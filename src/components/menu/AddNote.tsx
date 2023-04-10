@@ -83,7 +83,7 @@ export default function AddaNote({ open, handleClose,index,addForm,editForId,edi
         <DialogContent style={{ display: "flex", flexDirection: "column", gap: '20px' }}>
           <TextField
             id="outlined-basic"
-            label={index[editForId].title}
+            label='Title'
             variant="outlined"
             fullWidth
             name="title"
