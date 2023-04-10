@@ -24,7 +24,7 @@ export default function Note({value,Delete,EditNote,search}:Props) {
 
   return (
     <Card sx={{ width: "100%" }} style={{backgroundColor:`${value.color}`}}>
-      <CardHeader 
+      <CardHeader  
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
             {value.title[0]}
@@ -38,16 +38,18 @@ export default function Note({value,Delete,EditNote,search}:Props) {
           {value.description}
         </Typography>
       </CardContent>
+
+
+      
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites" onClick={()=>Delete(value.id)}>
-            {/* colocar para deletar e editar */}
+        <IconButton onClick={()=>Delete(value.id)}>
+            {/* colocar para deletar */}
             <MdIcons.MdDelete />
         </IconButton>
-        <IconButton aria-label="share" onClick={()=>EditNote(value.id)}>
-            {/* colocar para deletar e editar */}
+        <IconButton onClick={()=>EditNote(value.id)}>
+            {/* colocar para editar */}
             <MdIcons.MdModeEditOutline/>
         </IconButton>
-        
       </CardActions>
     </Card>
   );

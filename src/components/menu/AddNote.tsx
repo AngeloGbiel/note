@@ -83,7 +83,6 @@ export default function AddaNote({ open, handleClose,index,addForm,editForId,edi
         <DialogContent style={{ display: "flex", flexDirection: "column", gap: '20px' }}>
           <TextField
             id="outlined-basic"
-            defaultValue={'test'}
             label={index[editForId].title}
             variant="outlined"
             fullWidth
@@ -94,7 +93,6 @@ export default function AddaNote({ open, handleClose,index,addForm,editForId,edi
             id="outlined-multiline-static"
             label="Description"
             multiline
-            defaultValue={'aisodhkjasdfhadfkaskjfshdflasdhfweyhrksdfhsdkj'}
             rows={4}
             fullWidth
             name="description"
@@ -203,7 +201,6 @@ interface Color {
 const ColorDate = styled.div`
   display:flex;
   justify-content: space-between;
-
   .color{
     display:flex;
     gap:20px;
@@ -217,6 +214,12 @@ const ColorDate = styled.div`
     border-bottom:1px solid black;
     outline:none;
   }
+  @media(max-width:600px){
+    .color{
+      gap:10px;
+      max-width:90px;
+    }
+  }
   `
 const ColorNoteStyled = styled.div<Color>`
   background-color:${({ colorNote }) => colorNote.cor};
@@ -224,4 +227,8 @@ const ColorNoteStyled = styled.div<Color>`
   width:30px;
   border:black solid 1px;
   transition: .3s;
+  @media(max-width:600px){
+    height:15px;
+    width:15px;
+  }
 `

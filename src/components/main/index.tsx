@@ -112,15 +112,33 @@ const MainStyled = styled.div`
       height:330px;
     }
     .containerNote{
-      /* background-color:red; */
-      /* column-count:4;
-      column-gap:10px; */
-      -webkit-column-count:3;
-      -moz-column-count:3;
+      -webkit-column-count:4;
+      -moz-column-count:4;
       column-count:4;
       -webkit-column-width:33%;
       -moz-column-width:33%;
       column-width:33%;
       padding: 0 12px;
+    }
+    @media(max-width:1100px){
+      .containerNote{
+        -webkit-column-count:3;
+        -moz-column-count:3;
+        column-count:3;
+      }
+    }
+    @media(max-width:800px){
+      .containerNote{
+        -webkit-column-count:2;
+        -moz-column-count:2;
+        column-count:2;
+      }
+    }
+    @media(max-width:600px){
+      .containerNote{
+        -webkit-column-count:1;
+        -moz-column-count:1;
+        column-count:1;
+      }
     }
 `

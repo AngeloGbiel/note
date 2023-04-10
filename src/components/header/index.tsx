@@ -1,6 +1,6 @@
-import Lupa from '../img/Lupa.png'
 import React from 'react'
 import styled from 'styled-components'
+import * as AiIcons from 'react-icons/ai'
 
 interface Props {
     setSearch:(search:string)=>void
@@ -12,7 +12,7 @@ export default function Header({setSearch}:Props) {
         <div className='search'>
             <input onChange={(e)=>setSearch(e.target.value)} type='text' id='search' placeholder='Search'/>
             <label htmlFor='search' className='lupa'>
-                <img src={Lupa}/>
+                <AiIcons.AiOutlineSearch size={'20px'}/>
             </label>
         </div>
     </StyledHeader>
@@ -50,5 +50,13 @@ const StyledHeader = styled.div`
         display:flex;
         justify-content: center;
         align-items: center;
+    }
+    @media(max-width:600px){
+        .search{
+            width:100%;
+        }
+        .lupa{
+            width:60px;
+        }
     }
 `
