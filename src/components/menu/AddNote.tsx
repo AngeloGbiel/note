@@ -36,6 +36,26 @@ interface Form {
   }
 }
 
+function useEditForm(){
+  const [form, setForm] = React.useState({
+    title: "",
+    description: "",
+    date: "",
+  })
+  return{
+    form, 
+    setForm,
+    handleChange: (e: Form) => {
+      const value = e.target.value
+      const name = e.target.name
+      setForm({
+        ...form,
+        [name]:value
+      })
+    },
+  }
+}
+
 function useForm() {
   const [form, setForm] = React.useState({
     title: "",
@@ -67,7 +87,28 @@ export default function AddaNote({ open, handleClose,index,addForm,editForId,edi
   const [active, setActive] = React.useState<number|string>(0)
   const [color,setColor] = React.useState("#EE5656")
   const AddNoteForm = useForm()
-  
+  const EditNoteForm = useEditForm()
+
+  React.useEffect(()=>{
+    try {
+      if(edit){
+        let indexNote = index.filter((value)=>{
+          if (value.id==editForId){
+            return value
+          }
+        })
+        // console.log(typeof(indexNote[0].title))
+        EditNoteForm.setForm({
+          title:indexNote[0].title,
+          description:indexNote[0].description || "",
+          date:indexNote[0].date || ""
+        })
+      }
+    } catch (error) {
+      console.log('error')
+    }
+    
+  },[edit])
 
   return (
     <div>
@@ -87,7 +128,8 @@ export default function AddaNote({ open, handleClose,index,addForm,editForId,edi
             variant="outlined"
             fullWidth
             name="title"
-            onChange={AddNoteForm.handleChange}
+            value={EditNoteForm.form.title}
+            onChange={EditNoteForm.handleChange}
           />
           <TextField
             id="outlined-multiline-static"
@@ -96,8 +138,9 @@ export default function AddaNote({ open, handleClose,index,addForm,editForId,edi
             rows={4}
             fullWidth
             name="description"
-            onChange={AddNoteForm.handleChange}
-            value={AddNoteForm.form.description}
+            value={EditNoteForm.form.description}
+            onChange={EditNoteForm.handleChange}
+
           />
           <ColorDate>
             <div className='color'>
@@ -117,14 +160,20 @@ export default function AddaNote({ open, handleClose,index,addForm,editForId,edi
                 })
               }
             </div>
-            <input type="date" className='date' name="date" onChange={AddNoteForm.handleChange}/>
+            <input 
+              type="date" 
+              className='date' 
+              name="date" 
+              value={EditNoteForm.form.date}
+              onChange={EditNoteForm.handleChange}
+            />
           </ColorDate>
         </DialogContent>
         <DialogActions>
           <Button style={{ color: "black" }} onClick={Cancelar}>Cancelar</Button>
           <Button style={{ backgroundColor: "#06f", color: "black" }} onClick={()=>{
             handleClose()
-            saveChange(color,AddNoteForm.form.title,AddNoteForm.form.description,AddNoteForm.form.date)
+            saveChange(color,EditNoteForm.form.title,EditNoteForm.form.description,EditNoteForm.form.date)
             AddNoteForm.clearForm()
           }}>Salvar</Button>
         </DialogActions>

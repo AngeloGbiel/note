@@ -14,7 +14,7 @@ interface Props {
 }
 
 export default function Main({ note, addForm,Delete,showValues,search}: Props) {
-  const [edit,SetEdit] = useState(false)
+  const [edit,SetEdit] = useState<boolean>(false)
   const [editForId,setEditForId] = useState<number>(0)
   const [open, setOpen] = useState(false);
   const handleClose = () => {

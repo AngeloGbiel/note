@@ -1,11 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import * as AiIcons from 'react-icons/ai'
-
 interface Props {
     setSearch:(search:string)=>void
 }
-
 export default function Header({setSearch}:Props) {
   return (
     <StyledHeader>
@@ -18,8 +16,6 @@ export default function Header({setSearch}:Props) {
     </StyledHeader>
   )
 }
-
-
 const StyledHeader = styled.div`
     height:10%;
     display:flex;
